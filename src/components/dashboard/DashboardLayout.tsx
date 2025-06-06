@@ -46,7 +46,12 @@ const DashboardLayout: React.FC = () => {
     { name: 'Settings', href: '/dashboard/settings', icon: Settings },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === '/dashboard') {
+      return location.pathname === '/dashboard';
+    }
+    return location.pathname === path;
+  };
 
   const handleRefresh = () => {
     setRefreshing(true);
@@ -105,21 +110,22 @@ const DashboardLayout: React.FC = () => {
         <nav className="flex flex-col gap-1 p-4">
           {navigation.map((item) => {
             const Icon = item.icon;
+            const active = isActive(item.href);
             return (
               <Link
                 key={item.name}
                 to={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
-                  isActive(item.href)
+                  active
                     ? 'bg-gradient-to-r from-[#1E2A78] to-[#3B4B9A] text-white shadow-lg transform scale-[1.02]'
                     : 'text-gray-700 hover:bg-gray-50 hover:scale-[1.01]'
                 }`}
               >
-                <Icon className={`h-5 w-5 ${isActive(item.href) ? 'text-white' : 'text-gray-500 group-hover:text-[#1E2A78]'}`} />
+                <Icon className={`h-5 w-5 ${active ? 'text-white' : 'text-gray-500 group-hover:text-[#1E2A78]'}`} />
                 <span className="font-medium">{item.name}</span>
                 <ChevronRight className={`ml-auto h-4 w-4 transition-all duration-200 ${
-                  isActive(item.href) ? 'text-white opacity-100 transform rotate-90' : 'text-gray-400 opacity-0 group-hover:opacity-100'
+                  active ? 'text-white opacity-100 transform rotate-90' : 'text-gray-400 opacity-0 group-hover:opacity-100'
                 }`} />
               </Link>
             );

@@ -42,11 +42,13 @@ function App() {
             <ScrollToTop />
           </div>
         } />
+        
         <Route path="/get-started" element={<OnboardingLayout />}>
           <Route index element={<BusinessInfo />} />
           <Route path="setup" element={<SetupPreference />} />
           <Route path="finalize" element={<FinalSetup />} />
         </Route>
+        
         <Route path="/setup" element={<SystemSetupLayout />}>
           <Route path="rewards" element={<RewardStructure />} />
           <Route path="first-reward" element={<FirstReward />} />
@@ -54,9 +56,16 @@ function App() {
           <Route path="tablet" element={<StaffTablet />} />
           <Route path="activation" element={<Activation />} />
         </Route>
+        
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardHome />} />
           <Route path="billing" element={<BillingPage />} />
+          <Route path="customers" element={<div className="p-6"><h1 className="text-2xl font-bold">Customers Page</h1><p>Coming soon...</p></div>} />
+          <Route path="rewards" element={<div className="p-6"><h1 className="text-2xl font-bold">Rewards Page</h1><p>Coming soon...</p></div>} />
+          <Route path="qr" element={<div className="p-6"><h1 className="text-2xl font-bold">QR Codes Page</h1><p>Coming soon...</p></div>} />
+          <Route path="staff" element={<div className="p-6"><h1 className="text-2xl font-bold">Staff Page</h1><p>Coming soon...</p></div>} />
+          <Route path="analytics" element={<div className="p-6"><h1 className="text-2xl font-bold">Analytics Page</h1><p>Coming soon...</p></div>} />
+          <Route path="settings" element={<div className="p-6"><h1 className="text-2xl font-bold">Settings Page</h1><p>Coming soon...</p></div>} />
         </Route>
       </Routes>
     </Router>
